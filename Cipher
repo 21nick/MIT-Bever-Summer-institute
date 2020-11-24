@@ -1,0 +1,30 @@
+
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+keyword = "test"
+string = "test"
+final_string = ''
+keyphrase = ''
+
+key = "".join(dict.fromkeys(keyword))
+for j in key:
+  for k in range(len(alphabet)):
+    if (j == alphabet[k]):
+      keyphrase += (j)
+    
+key_alphabet = set(keyphrase).symmetric_difference(alphabet)
+key_alphabet = ''.join(sorted(key_alphabet))
+
+keyphrase += key_alphabet
+
+
+for i in range(len(string)):
+  if (not(string[i].isalpha())): 
+    final_string += string[i]
+  else:
+    for z in range(len(alphabet)):
+      if ( string[i] == alphabet[z] ):
+        final_string += keyphrase[z]
+print ( final_string )
+
+
+  
