@@ -1,1 +1,21 @@
+def decode(message): 
+    i = 0
+    list = []
+    while (i <= len(message)-1): 
+        count = 1
+        ch = message[i] 
+        j = i 
+        while (j < len(message)-1): 
+            if (message[j] == message[j+1]):
+              count = int(message[j+2]) 
+              j = j+2
+            else: 
+                break
+        list.append(ch)
+        if ( count != 1 ):
+          for num in range ( count-1 ):
+            list.append(ch)
+        i = j+1
+    return (''.join(list)) 
 
+print(decode(["a","a","3","b","c","c","2"]))
