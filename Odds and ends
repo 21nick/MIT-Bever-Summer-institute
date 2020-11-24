@@ -1,1 +1,216 @@
 
+import collections 
+with open('file.txt') as file:
+        data = file.read().replace('\n', ', ')
+        x = data.split(', ')
+
+
+c = len(x)
+List = []
+for i in range(c):
+  d = x[i].split(': ')
+  List.append([d[1],[d[0]]])
+
+
+
+
+category_list = []
+for count in range(c):
+  category_list.append( List[count][0] )
+  num = len(list(dict.fromkeys(category_list)))
+
+
+
+new = []
+for z in range(num):
+  new.append(List[z])
+  y = z + 1
+  while (y < len(List)):
+    if new[z][0] == List[y][0]:
+      new[z][1].append( List[y][1][0] )
+      del List[y]
+    else:
+      y += 1
+      pass
+
+#print(new)
+'''
+for p in range(len(List)-1):
+  if ( List[len(List)-1][0] == List[p][0] ):
+    new[p][1].append(List[len(List)-1][1])
+  else:
+    pass
+'''
+
+
+final_list = []
+for j in range( len(new) ):
+  count = collections.Counter(List[j][1])
+  most = count.most_common()
+  if ( len(most) > 1 ):
+    if ( most[0][1] == most[1][1] ):
+      alpha = 0
+      for alpha1 in range( len(most) -1 ):
+        if ( most[alpha][1] == most[alpha1][1] ):
+          if ( most[alpha][0] < most[alpha1+1][0] ):
+            pass
+          else:
+            alpha = alpha1+1
+        else:
+          break
+      final_list.append( [List[j][0]] )
+      final_list[j].append( most[alpha][0] )
+    else:
+      final_list.append( [List[j][0]] )
+      final_list[j].append( most[0][0] )
+  else:
+    final_list.append( [List[j][0]] )
+    final_list[j].append( most[0][0] )
+
+
+finish = {final_list[f][0]: final_list[f][1] for f in range( len(new) )}
+print(finish)
+
+'''
+for y in range( len(new) ):
+  count = collections.Counter(List[y][1])
+  most = count.most_common()
+  if ( len(most) > 1 ):
+    alpha = 0
+    ini = 0
+    while (alpha < len(most) -1):
+      if ( most[alpha][0] < most[alpha+1][0] ):
+        
+  final_list.append( [List[y][0]] )
+  final_list[y].append( most[0][0] )
+'''
+'''
+for y in range( len(new) ):
+  count = collections.Counter(List[y][1])
+  most = count.most_common()
+  if ( len(most) > 1):
+    alpha1 = 0
+    for alpha in range( len(most)-1 ):
+      if ( most[alpha1][0] < most[alpha+1][0] ):
+        pass
+      else:
+'''
+'''
+for y in range( len(new) ):
+  count = collections.Counter(List[y][1])
+  most = count.most_common()
+  if ( len(most) > 1):
+    alpha1 = 1
+    while ( alpha1 <  len(most)-1 ):
+      if ( most[0][0] < most[alpha1][0] ):
+        del most[alpha1]
+      else:
+        del most[0]
+    final_list.append( [List[y][0]] )
+    final_list[y].append( most[0][0] )
+  else:
+    final_list.append( [List[y][0]] )
+    final_list[y].append( most[0][0] )
+'''
+'''
+count = collections.Counter(List[2][1])
+most = count.most_common()
+print(most[0][0])
+if len(most) > 1:
+  print("oh no")
+print(count)
+print('\n\n')
+print(most)
+print('\n\n')
+'''
+
+
+
+
+
+
+
+
+
+
+'''
+#### Last element not getting read 
+new = []
+for y in range(num):
+  new.append(List[y])
+  z = y + 1
+  while (z < (len(List)-1) ):
+    if List[y][0] == List[z][0]:
+      if List[y][1][0] == List[z][1][0]:
+        new[y][1][1] += 1
+        del List[z]
+      else:
+        work = False
+        for t in range(len(new[y])-1):
+          if( List[z][1][0] == new[y][t+1][0] ):
+            new[y][ t+1 ][1] += 1
+            work = True
+            del List[z]
+        if ( work == False ):
+          newlist = [List[z][1][0],1]
+          new[y].append(newlist)
+          del List[z]
+    else:
+      z += 1
+      pass
+
+
+
+
+for last_check in range(num):
+  if ( new[last_check][0] == List[ len(List)-1 ][0] ):
+    last_work = False
+    for food in range( len(new[last_check])-1 ):
+      if List[ len(List)-1 ][1][0] == new[last_check][food+1][0]:
+        new[last_check][food+1][1] += 1
+        last_work = True
+    if last_work == False:
+        newlist = [List[ len(List)-1 ][1][0],1]
+        new[last_check].append(newlist)
+  else:
+    pass
+
+print(List)
+print('\n\n')
+print(new)
+
+
+for most in range(len(new)):
+  number = 1
+  while ( number < (len(new[most])-1)):
+    if ( new[most][1][1] > new[most][number+1][1]):
+      new[most].remove( new[most][number+1] )
+    elif ( new[most][1][1] < new[most][number+1][1] ):
+      new[most].remove( new[most][1] )
+    elif ( new[most][1][1] == new[most][number+1][1] ):
+      if ( new[most][1][0] < new[most][number+1][0] ):
+        new[most].remove( new[most][number+1] )
+      else:
+        new[most].remove( new[most][1] )
+
+
+finish = {new[f][0]: new[f][1][0] for f in range( len(new) )}
+print(finish)
+'''
+
+
+
+'''
+x = ["banana","apples"]
+
+if ( x[0] < x[1] ):
+  print("alpha correct")
+else:
+  print("alpha incorrect")
+'''
+
+
+
+
+
+
