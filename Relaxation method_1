@@ -1,1 +1,15 @@
+x = [1,4,3,1,2,3,5]
+i = 2
+y = []
+while (i < len(x)):
+  he = ((x[i]-x[i-1])**2)
+  llo = (2*x[i-1]-x[i-2]-x[i])
+  if ( he == 0 ):
+    he = 1 * (10**-14)
+  if ( llo == 0 ):
+    llo = 1 * (10**-14)  
+  change = he/llo
+  y.append(abs(change))
+  i += 1
+print ( y )
 
